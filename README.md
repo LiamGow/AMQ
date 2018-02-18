@@ -1,12 +1,14 @@
-# Requirements:
+# AMQ
+
+## Requirements:
 - python3
 - ffmpeg: (Must be added to path)
     - https://github.com/adaptlearning/adapt_authoring/wiki/Installing-FFmpeg
 
-# Run Instructions
+## Run Instructions
 > python3 amq.py [args]
 
-# Arguments:
+## Arguments:
     -h, --help                              Help: show this help message and exit
     
     -o OUTPUT, --output OUTPUT              Output: path - file extension is optional and discouraged
@@ -27,17 +29,17 @@
     -n, --no_convert                        Option: do not convert downloaded files - this will not merge the audio and video tracks
 
 
-# Input Precedence: 
+## Input Precedence: 
 Lower numbers overwrite higher numbers of the same format
 1. Image
 2. Audio
 3. Video
 4. URL
 
-# Planned Features
+## Planned Features
 - Add lyrics metadata to mp3s from animelyrics.com with -mu [url]
 - Add auto-installation for ffmpeg on Windows and Mac
 - Create executables for Windows and Mac
 
-# Notes
+## Notes
 This project is still in development. There is little-to-no error checking, especially with regard to argument combinations.
