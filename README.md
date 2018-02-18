@@ -2,14 +2,11 @@
 - python3
 - ffmpeg:
     - https://github.com/adaptlearning/adapt_authoring/wiki/Installing-FFmpeg
-    
-usage: amq.py [-h] [-o OUTPUT] [-v VIDEO] [-a AUDIO] [-i IMAGE] [-u URL]
-              [-r RESOLUTION] [-p FPS] [-b BITRATE] [-m] [-s] [-n] [-ss START]
-              [-ee END]
 
-A utility for downloading and converting youtube videos
+# Run Instructions
+> python3 amq.py [args]
 
-# Optional Arguments:
+# Arguments:
     -h, --help                              Help: show this help message and exit
     
     -o OUTPUT, --output OUTPUT              Output: path - file extension is optional and discouraged
