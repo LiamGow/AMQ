@@ -11,7 +11,7 @@ usage: amq.py [-h] [-o OUTPUT] [-v VIDEO] [-a AUDIO] [-i IMAGE] [-u URL]
 
 A utility for downloading and converting youtube videos
 
-optional arguments:
+# Optional Arguments:
     -h, --help                              Help: show this help message and exit
     
     -o OUTPUT, --output OUTPUT              Output: path - file extension is optional and discouraged
@@ -32,7 +32,7 @@ optional arguments:
     -n, --no_convert                        Option: do not convert downloaded files - this will not merge the audio and video tracks
 
 
-#Input Precedence: 
+# Input Precedence: 
 (Lower numbers overwrite higher numbers of the same format)
 1. Image
 2. Audio
