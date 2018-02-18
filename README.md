@@ -28,7 +28,7 @@
 
 
 # Input Precedence: 
-(Lower numbers overwrite higher numbers of the same format)
+Lower numbers overwrite higher numbers of the same format
 1. Image
 2. Audio
 3. Video
