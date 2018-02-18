@@ -1,6 +1,6 @@
 # Requirements:
 - python3
-- ffmpeg:
+- ffmpeg: (Must be added to path)
     - https://github.com/adaptlearning/adapt_authoring/wiki/Installing-FFmpeg
 
 # Run Instructions
