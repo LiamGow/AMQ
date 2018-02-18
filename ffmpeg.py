@@ -175,7 +175,7 @@ def process(args):
 
 def audio_convert(path):
     mp3 = os.path.splitext(path)[0] + "_temp.mp3"
-    command = "ffmpeg -i '" + path + "' -q:a 0 -map a '" + mp3 + "'"
+    command = 'ffmpeg -i "' + path + '" -q:a 0 -map a "' + mp3 + '"'
     print(command)
     subprocess.run(command)
 
