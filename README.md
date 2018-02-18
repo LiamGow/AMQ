@@ -33,3 +33,11 @@ Lower numbers overwrite higher numbers of the same format
 2. Audio
 3. Video
 4. URL
+
+# Planned Features
+- Add lyrics metadata to mp3s from animelyrics.com with -mu [url]
+- Add auto-installation for ffmpeg on Windows and Mac
+- Create executables for Windows and Mac
+
+# Notes
+This project is still in development. There is little-to-no error checking, especially with regard to argument combinations.
