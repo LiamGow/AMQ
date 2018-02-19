@@ -30,6 +30,12 @@ def process(args):
     input_flags = ""
     output_flags = ""
 
+    # trimming
+    if start:
+        input_flags += " -ss " + start
+    if end:
+        input_flags += " -to " + end
+
     # audio codec
     if music:
         input_flags += " -c:a copy"
@@ -131,12 +137,6 @@ def process(args):
             output_flags += " -b:v " + bitrate
         if fps:
             output_flags += " -r:v " + str(fps)
-
-    # trimming
-    if start:
-        input_flags += " -ss " + start
-    if end:
-        input_flags += " -to " + end
 
     # create ffmpeg command
     command = "ffmpeg"
