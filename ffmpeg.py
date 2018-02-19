@@ -6,7 +6,11 @@ from utils import MissingArgument
 
 import os
 
+# ffmpeg location
+ffmpeg_path = "./ffmpeg"
+
 def process(args):
+
     # get args
     dest = args["output"]
 
@@ -140,7 +144,7 @@ def process(args):
             output_flags += " -r:v " + str(fps)
 
     # create ffmpeg command
-    command = "ffmpeg" + " " + timing_flags
+    command = ffmpeg_path + " " + timing_flags
 
     if image:
         if not music:
@@ -176,7 +180,7 @@ def process(args):
 
 def audio_convert(path):
     mp3 = os.path.splitext(path)[0] + "_temp.mp3"
-    command = './ffmpeg -i "' + path + '" -q:a 0 -map a "' + mp3 + '"'
+    command = ffmpeg_path + ' -i "' + path + '" -q:a 0 -map a "' + mp3 + '"'
     print(command)
     subprocess.run(command)
 
