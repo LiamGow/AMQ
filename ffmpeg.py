@@ -29,12 +29,13 @@ def process(args):
     # create ffmpeg args with libraries
     input_flags = ""
     output_flags = ""
+    timing_flags = ""
 
     # trimming
     if start:
-        input_flags += " -ss " + start
+        timing_flags += " -ss " + start
     if end:
-        input_flags += " -to " + end
+        timing_flags += " -to " + end
 
     # audio codec
     if music:
@@ -139,7 +140,7 @@ def process(args):
             output_flags += " -r:v " + str(fps)
 
     # create ffmpeg command
-    command = "ffmpeg"
+    command = "ffmpeg" + " " + timing_flags
 
     if image:
         if not music:
