@@ -79,7 +79,7 @@ def process(args):
                 os.rename(dest, audio)
 
         else:
-            raise MissingArgument("process: no output filepath given")
+            raise MissingArgument("no output filepath given")
 
     # handle audio track only
     if music or still:
@@ -91,7 +91,7 @@ def process(args):
                 audio = download.get_audio(args)
             # or error if no url
             else:
-                raise MissingArgument("process: no audio file or url given for music/still")
+                raise MissingArgument("no audio file or url given for music/still")
 
         # if image not provided
         if not image:
@@ -99,8 +99,8 @@ def process(args):
             if url:
                 image = download.get_image(args, "_image")
             # or error if no url
-            else:
-                raise MissingArgument("process: no image or url given for music/still")
+            elif still:
+                raise MissingArgument("no image or url given for music/still")
 
         # if no convert desired, end here
         if no_convert:
