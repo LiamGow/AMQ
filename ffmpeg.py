@@ -5,9 +5,10 @@ import download
 from utils import MissingArgument
 
 import os
+import sys
 
 # ffmpeg location
-ffmpeg_path = "./ffmpeg"
+ffmpeg_path = "ffmpeg" if sys.platform.startswith('win') else "./ffmpeg"
 
 def process(args):
 
