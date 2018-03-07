@@ -32,9 +32,9 @@ def process(args):
     end = args["end"]
 
     # create ffmpeg args with libraries
+    timing_flags = ""
     input_flags = ""
     output_flags = ""
-    timing_flags = ""
 
     # trimming
     if start:

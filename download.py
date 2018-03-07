@@ -1,5 +1,6 @@
 from pytube import YouTube
 import pytube.extract
+from pytube.helpers import safe_filename
 
 import urllib.request
 import urllib.error
@@ -80,7 +81,10 @@ def _download_video(url, dest, name):
         .first()\
         .download(output_path=dest, filename=name)
 
-    return os.path.join(dest, name) + ".mp4"
+    path = os.path.join(dest, name) + ".mp4"
+    os.rename(safe_filename(os.path.join(dest, name) + ".mp4"), path)
+
+    return path
 
 
 def _download_audio(url, dest, name):
@@ -92,7 +96,10 @@ def _download_audio(url, dest, name):
         .first()\
         .download(output_path=dest, filename=name)
 
-    return os.path.join(dest, name) + ".mp4"
+    path = os.path.join(dest, name) + ".mp4"
+    os.rename(safe_filename(os.path.join(dest, name) + ".mp4"), path)
+
+    return path
 
 
 def _download_image(url, dest, name):
