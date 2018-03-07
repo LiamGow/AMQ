@@ -82,7 +82,7 @@ def _download_video(url, dest, name):
         .download(output_path=dest, filename=name)
 
     path = os.path.join(dest, name) + ".mp4"
-    os.rename(safe_filename(os.path.join(dest, name) + ".mp4"), path)
+    os.rename(os.path.join(dest, safe_filename(name)) + ".mp4", path)
 
     return path
 
@@ -97,7 +97,7 @@ def _download_audio(url, dest, name):
         .download(output_path=dest, filename=name)
 
     path = os.path.join(dest, name) + ".mp4"
-    os.rename(safe_filename(os.path.join(dest, name) + ".mp4"), path)
+    os.rename(os.path.join(dest, safe_filename(name)) + ".mp4", path)
 
     return path
 
@@ -105,7 +105,9 @@ def _download_audio(url, dest, name):
 def _download_image(url, dest, name):
     image_url = "https://img.youtube.com/vi/" + pytube.extract.video_id(url) + "/maxresdefault.jpg"
     backup_url = "https://img.youtube.com/vi/" + pytube.extract.video_id(url) + "/0.jpg"
+
     path = os.path.join(dest, name)
+
     try:
         return urllib.request.urlretrieve(image_url, path)[0]
     except urllib.error.HTTPError:
