@@ -74,12 +74,20 @@ def get_image(args, suffix=""):
 
 def _download_video(url, dest, name):
     yt = YouTube(url, on_progress_callback=progress_bar, on_complete_callback=complete_bar)
-    yt.streams\
-        .filter(adaptive=True, mime_type="video/mp4")\
-        .order_by('resolution')\
-        .desc()\
-        .first()\
-        .download(output_path=dest, filename=name)
+    try:
+        yt.streams\
+            .filter(adaptive=True, mime_type="video/mp4")\
+            .order_by('resolution')\
+            .desc()\
+            .first()\
+            .download(output_path=dest, filename=name)
+    except AttributeError:
+        yt.streams \
+            .filter(mime_type="video/mp4") \
+            .order_by('resolution') \
+            .desc() \
+            .first() \
+            .download(output_path=dest, filename=name)
 
     path = os.path.join(dest, name) + ".mp4"
     os.rename(os.path.join(dest, safe_filename(name)) + ".mp4", path)
@@ -89,12 +97,19 @@ def _download_video(url, dest, name):
 
 def _download_audio(url, dest, name):
     yt = YouTube(url, on_progress_callback=progress_bar, on_complete_callback=complete_bar)
-    yt.streams\
-        .filter(mime_type="audio/mp4")\
-        .order_by('abr')\
-        .desc()\
-        .first()\
-        .download(output_path=dest, filename=name)
+
+    try:
+        yt.streams\
+            .filter(mime_type="audio/mp4")\
+            .order_by('abr')\
+            .desc()\
+            .first()\
+            .download(output_path=dest, filename=name)
+    except AttributeError:
+        yt.streams \
+            .filter(mime_type="video/mp4") \
+            .first() \
+            .download(output_path=dest, filename=name)
 
     path = os.path.join(dest, name) + ".mp4"
     os.rename(os.path.join(dest, safe_filename(name)) + ".mp4", path)

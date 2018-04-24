@@ -32,15 +32,16 @@ def process(args):
     end = args["end"]
 
     # create ffmpeg args with libraries
-    timing_flags = ""
+    start_time_flag = ""
+    end_time_flag = ""
     input_flags = ""
     output_flags = ""
 
     # trimming
     if start:
-        timing_flags += " -ss " + start
+        start_time_flag += " -ss " + start
     if end:
-        timing_flags += " -to " + end
+        end_time_flag += " -to " + end
 
     # audio codec
     if music:
@@ -126,7 +127,13 @@ def process(args):
             # download from url
             if url:
                 video = download.get_video(args, " video")
-                audio = download.get_audio(args, " audio") if not audio else audio
+
+                # if audio is not included in video file, also download audio
+                probe = "ffprobe -loglevel error -select_streams a -show_entries stream=codec_type -of csv=p=0 "
+                rtn = subprocess.run(probe + '"' + video + '"', stdout=subprocess.PIPE).stdout
+                if not audio and "audio" not in rtn.decode('ascii'):
+                    audio = download.get_audio(args, " audio")
+
             else:
                 raise MissingArgument("process: no video file or url given")
 
@@ -145,7 +152,7 @@ def process(args):
             output_flags += " -r:v " + str(fps)
 
     # create ffmpeg command
-    command = ffmpeg_path + " " + timing_flags
+    command = ffmpeg_path + " " + start_time_flag
 
     if image:
         if not music:
@@ -158,7 +165,7 @@ def process(args):
     if input_flags:
         command += " " + input_flags
 
-    command += " " + output_flags + ' "' + dest + '"'
+    command += " " + end_time_flag + " " + output_flags + ' "' + dest + '"'
 
     print(command)
 
